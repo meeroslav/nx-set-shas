@@ -12,7 +12,7 @@ if [ "$GITHUB_EVENT_NAME" = "pull_request" ]; then
 else
     # For the base SHA for main builds we use the latest matching tag as a marker for the last commit which was successfully built.
     # We use 2> /dev/null to swallow any direct errors from the command itself so we can provide more useful messaging
-    BASE_SHA=$(node find-successful-workflow.js $GITHUB_TOKEN $INPUTS_MAIN_BRANCH_NAME $INPUTS_WORKFLOW_ID)
+    BASE_SHA=$(node ./find-successful-workflow.js $GITHUB_TOKEN $INPUTS_MAIN_BRANCH_NAME $INPUTS_WORKFLOW_ID)
 
     if [ -z $BASE_SHA ]; then
         if [ $INPUTS_ERROR_ON_NO_SUCCESSFUL_WORKFLOW = "true" ]; then
